@@ -28,7 +28,7 @@ class AddressBook(object):
         new_person = Person()
         new_person.get_information()
         self.addresses.append(new_person)
-        
+
     def find_person(self):
         print "\nSearching for a person"
         needle = raw_input("Please enter the last name: ")
