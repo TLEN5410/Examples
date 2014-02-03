@@ -3,6 +3,7 @@ import collections
 import re
 
 def main():
+    # KJV in plaintext can be found at http://printkjv.ifbweb.com/
     with open("/home/dehus/Downloads/AV1611Bible.txt", 'rU') as file:
         lines = file.readlines()
 
