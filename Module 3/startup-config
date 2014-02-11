@@ -1,0 +1,119 @@
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+ip cef
+!
+!
+!
+!
+no ip domain lookup
+ip domain name mycompany.com
+ip auth-proxy max-nodata-conns 3
+ip admission max-nodata-conns 3
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+archive
+ log config
+  hidekeys
+! 
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 172.20.74.100 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Serial0/0
+ ip address 192.168.10.1 255.255.255.252
+ clock rate 2000000
+!
+interface FastEthernet0/1
+ ip address 172.16.1.17 255.255.255.240
+ duplex auto
+ speed auto
+!
+interface Serial0/1
+ ip address 192.168.10.5 255.255.255.252
+ clock rate 2000000
+!
+router ospf 1
+ router-id 198.11.21.205
+ log-adjacency-changes
+ network 172.16.1.16 0.0.0.15 area 0
+ network 192.168.10.0 0.0.0.3 area 0
+ network 192.168.10.4 0.0.0.3 area 0
+!
+ip forward-protocol nd
+ip route 0.0.0.0 0.0.0.0 198.11.21.1
+ip route 0.0.0.0 0.0.0.0 172.20.74.1
+ip route 198.11.21.0 255.255.255.0 198.11.21.1
+!
+!
+ip http server
+no ip http secure-server
+!
+snmp-server community public RO
+snmp-server packetsize 17940
+!
+!
+!
+!
+!
+tftp-server nvram:/startup-config
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
