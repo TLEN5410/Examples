@@ -23,7 +23,7 @@ class Router(object):
     def _set_value(self, oid, value):
         varbind = netsnmp.Varbind(oid)
         varbind.val = value
-        self.session.set(netsnmp.Varlist(varbind))
+        self.session.set(netsnmp.VarList(varbind))
 
     def get_hostname(self):
         self._get_value('.1.3.6.1.2.1.1.5')
@@ -35,7 +35,7 @@ class Router(object):
 
 
 def main():
-    r1 = Router('100.64.254.22', 'private')
+    r1 = Router('198.51.100.1', 'private')
     print r1.hostname
     r1.hostname = "newname"
     print r1.hostname
