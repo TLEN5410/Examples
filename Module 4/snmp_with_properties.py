@@ -27,7 +27,7 @@ class Router(object):
         self.session.set(netsnmp.VarList(varbind))
 
     def get_hostname(self):
-        self._get_value('.1.3.6.1.2.1.1.5.0')
+        return self._get_value('.1.3.6.1.2.1.1.5.0')
 
     def set_hostname(self, new_value):
         self._set_value('.1.3.6.1.2.1.1.5.0', new_value)
