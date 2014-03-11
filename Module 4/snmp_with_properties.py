@@ -22,6 +22,7 @@ class Router(object):
 
     def _set_value(self, oid, value):
         varbind = netsnmp.Varbind(oid)
+        self.session.get(netsnmp.VarList(varbind))
         varbind.val = value
         self.session.set(netsnmp.VarList(varbind))
 
